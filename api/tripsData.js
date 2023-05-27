@@ -78,7 +78,7 @@ const getTripsCruise = (firebaseKey) => new Promise((resolve, reject) => {
         .catch(reject);
 });
 
-const getUserTrip = (uid) => new Promise((resolve, reject) => {
+const getUserTrips = (uid) => new Promise((resolve, reject) => {
     fetch(`${endpoint}/trips.json?orderBy="uid"&equalTo="${uid}"`, {
         method: 'GET',
         headers: {
@@ -97,5 +97,5 @@ export {
     updateTrip,
     deleteSingleTrip,
     getTripsCruise,
-    getUserTrip,
+    getUserTrips,
 };

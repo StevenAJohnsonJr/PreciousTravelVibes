@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import Link from 'next/link';
 import {
@@ -11,7 +10,7 @@ export default function NavBarAuth() {
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
         <Link passHref href="/">
-          <Navbar.Brand>CHANGE ME</Navbar.Brand>
+          <Navbar.Brand>Paradise Travel Vibes</Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -20,7 +19,18 @@ export default function NavBarAuth() {
             <Link passHref href="/">
               <Nav.Link>Home</Nav.Link>
             </Link>
-            <Button variant="danger" onClick={signOut}>Sign Out</Button>
+            <Link passHref href="/profile">
+              <Nav.Link>Profile</Nav.Link>
+            </Link>
+            <Link className="ps-relative" passHref href="/trips/new">
+              <Nav.Link className="nav-topic">Trip</Nav.Link>
+            </Link>
+            <Link className="ps-relative" passHref href="/user">
+              <Nav.Link className="nav-topic">User</Nav.Link>
+            </Link>
+            <Button variant="danger" onClick={signOut}>
+              Sign Out
+            </Button>
           </Nav>
         </Navbar.Collapse>
       </Container>
