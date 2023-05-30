@@ -1,66 +1,29 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import { Button } from 'react-bootstrap';
+import { useAuth } from '../utils/context/authContext';
 import { getTrip } from '../api/tripsData';
 import TripsCard from '../components/TripCard';
 
 function Home() {
+  // TODO: Set a state for books
   const [trips, setTrips] = useState([]);
-  const [count, setCount] = useState(0);
-
-  const getAllTrips = () => {
-    getTrip()
-      .then((data) => {
-        if (Array.isArray(data)) {
-          setTrips(data);
-          setCount(data.length); // here is updating the count
-        } else {
-          console.error('Invalid response from API: expected an array');
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  // TODO: Get user ID using useAuth Hook
+  const { user } = useAuth();
+  // TODO: create a function that makes the API call to get all the books
+  const getAllTheTrips = () => {
+    getTrip(user.uid).then(setTrips);
   };
-
+  // TODO: make the call to the API to get all the books on component render
   useEffect(() => {
-    getAllTrips();
+    getAllTheTrips();
   }, []);
-
   return (
-    <div style={{ marginTop: '50px' }}>
-      <Row>
-        <Col sm={8}>
-          <div className="containerQuestion">
-            <div
-              style={{
-                marginTop: '50px',
-                marginBottom: '10px',
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-              }}
-            >
-              <h3>All Trips</h3>
-              <div>
-                <Link href="/trips/new" passHref>
-                  <Button variant="info">My Trips</Button>
-                </Link>
-              </div>
-            </div>
-            <h5 style={{ marginTop: '30px' }}>{count} Trips</h5>
-            <div className="d-flex flex-wrap" style={{ width: '100%', color: 'black', marginBottom: '50px' }}>
-              {/* check if questions is an array before mapping */}
-              {Array.isArray(trips) && trips.map((trip) => <TripsCard key={trips.firebaseKey} tripObj={trip} onUpdate={getAllTrips} />)}
-            </div>
-          </div>
-        </Col>
-        <Col sm={4} />
-      </Row>
+    <div className="d-flex flex-wrap">
+      {/* TODO: map over books here using BookCard component */}
+      {trips.map((trip) => (
+        <TripsCard key={trip.firebaseKey} tripObj={trip} onUpdate={getAllTheTrips} />
+      ))}
     </div>
   );
 }
-
 export default Home;

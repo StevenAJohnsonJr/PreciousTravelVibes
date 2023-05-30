@@ -19,11 +19,14 @@ export default function NavBarAuth() {
             <Link passHref href="/">
               <Nav.Link>Home</Nav.Link>
             </Link>
-            <Link passHref href="/profile">
+            {/* <Link passHref href="/pages/profile">
               <Nav.Link>Profile</Nav.Link>
-            </Link>
+            </Link> */}
             <Link className="ps-relative" passHref href="/trips/new">
-              <Nav.Link className="nav-topic">Trip</Nav.Link>
+              <Nav.Link className="nav-topic">Trip Form</Nav.Link>
+            </Link>
+            <Link className="ps-relative" passHref href="/cruises/new">
+              <Nav.Link className="nav-topic">Cruise Form</Nav.Link>
             </Link>
             <Link className="ps-relative" passHref href="/user">
               <Nav.Link className="nav-topic">User</Nav.Link>

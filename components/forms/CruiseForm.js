@@ -7,18 +7,29 @@ import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
 import { createTrip, getTrip, updateTrip } from '../../api/tripsData';
+import { propTypes } from 'react-bootstrap/esm/Image';
 
 const initialState = {
   first_name: '',
   last_name: '',
-  tripComments: '',
-  tripDepartingDate: '',
-  tripDepartingLocation: '',
+  cabinComments: '',
+  cabinType: '',
+  cruiseComments: '',
+  cruiseProtection: '',
+  includeGratuities: '',
+  numberOfCabins: '',
+  numberOfCruisers: '',
+  requireHotel: '',
+  tripCheckInDate: '',
+  tripCheckOutDate: '',
+  numberOfCruisers: '',
   tripReturningDate: '',
-  TripDestion: '',
+  cruiseDestion: '',
+  phone_number: '',
+  email: '',
 };
 
-function TripForm({ obj }) {
+function CruiseForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [setTrip] = useState([]);
@@ -64,12 +75,12 @@ function TripForm({ obj }) {
       <Form onSubmit={handleSubmit}>
         <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Your Paradise </h2>
 
-        <FloatingLabel controlId="floatingInput2" label="Please enter your first name" className="mb-3">
-          <Form.Control type="text" placeholder="Please enter your first name" name="first_name" value={formInput.first_name} onChange={handleChange} required />
+        <FloatingLabel controlId="floatingInput2" label="Please enter Guest 1's first name" className="mb-3">
+          <Form.Control type="url" placeholder="Please enter your first name" name="first_name" value={formInput.first_name} onChange={handleChange} required />
         </FloatingLabel>
 
         {/* TITLE INPUT  */}
-        <FloatingLabel controlId="floatingInput1" label="Please enter your last name" className="mb-3">
+        <FloatingLabel controlId="floatingInput1" label="Please enter Guest 1's last name" className="mb-3">
           <Form.Control type="text" placeholder="Please enter your last name" name="last_name" value={formInput.last_name} onChange={handleChange} required />
         </FloatingLabel> 
 
@@ -77,12 +88,9 @@ function TripForm({ obj }) {
           <Form.Control type="Number" placeholder="Please enter your 10 digit phone number" name="phone_number" value={formInput.phone_number} onChange={handleChange} required />
         </FloatingLabel>
 
-        <FloatingLabel controlId="floatingInput1" label="Please enter your email" className="mb-3">
+        <FloatingLabel controlId="floatingInput1" label="Please enter Guest 1's email" className="mb-3">
           <Form.Control type="text" placeholder="Please enter your email" name="email" value={formInput.email} onChange={handleChange} required />
         </FloatingLabel>
-
-        <input type="number" id="product-quantity" class="form-control single-product-qty input-sm" name="quantity" min="1" max="999" value="1" pattern="[0-9]*"></input>
-        <input type="hidden" name="variant_id" value="201"></input>
 
         {/* BUSINESS_TITLE INPUT  */}
         <Form.Check
@@ -168,60 +176,12 @@ function TripForm({ obj }) {
           <Form.Control type="text" placeholder="tripDepartingLocation" name="tripDepartingLocation" value={formInput.tripDepartingLocation} onChange={handleChange} required />
         </FloatingLabel>
         
-        {['radio'].map((type) => (
-        <div key={`inline-${type}`} className="mb-3">
-          Where would you like to explore?     
-          <Form.Check
-            inline
-            label="Jamicia"
-            name="Jamaicia"
-            type={type}
-            id={`inline-${type}-1`}
-          />
-          <Form.Check
-            inline
-            label="Mexico"
-            name="Mexico"
-            type={type}
-            id={`inline-${type}-2`}
-          />
-           <Form.Check
-            inline
-            label="Hawaii"
-            name="Hawaii"
-            type={type}
-            id={`inline-${type}-2`}
-          />
-           <Form.Check
-            inline
-            label="US City"
-            name="US City"
-            type={type}
-            id={`inline-${type}-2`}
-          />
-           <Form.Check
-            inline
-            label="Cruise"
-            name="Cruise"
-            type={type}
-            id={`inline-${type}-2`}
-          />
-           <Form.Check
-            inline
-            label="Dubai"
-            name="Dubai"
-            type={type}
-            id={`inline-${type}-2`}
-          />
-           <Form.Check
-            inline
-            label="Disney"
-            name="Disney"
-            type={type}
-            id={`inline-${type}-2`}
-          />
-        </div>
-      ))}
+        <select class="form-select" aria-label="Default select example">
+  <option selected>Open this select menu</option>
+  <option value="1">One</option>
+  <option value="2">Two</option>
+  <option value="3">Three</option>
+</select>
 
         <FloatingLabel controlId="floatingInput3" label="Anything else that you would like us to know?" className="mb-3">
           <Form.Control type="text" placeholder="tripComments" name="tripComments" value={formInput.tripComments} onChange={handleChange} required />
@@ -233,26 +193,30 @@ function TripForm({ obj }) {
   );
 }
 
-TripForm.propTypes = {
-  companyObj: PropTypes.shape({
-    tripDepartingDate: PropTypes.string,
-    tripDepartingLocation:PropTypes.string,
-    mehtodOfContact: PropTypes.string,
-    email: PropTypes.string,
-    phone_number: PropTypes.string,
-    emailMailingList:PropTypes.string,
-    uid: PropTypes.string,
-    tripComments: PropTypes.string,
-    TripDestion: PropTypes.string,
-    tripReturningDate: PropTypes.string,
+CruiseForm.propTypes = {
+  cruiseObj: PropTypes.shape({
     first_name: PropTypes.string,
+    last_name: PropTypes.string,
+    cabinComments:PropTypes.string,
+    cabinType: PropTypes.string,
+    cruiseComments: PropTypes.string,
+    cruiseProtection: PropTypes.string,
+    includeGratuities:PropTypes.string,
+    uid: PropTypes.string,
+    numberOfCabins: PropTypes.string,
+    numberOfCruisers: PropTypes.string,
+    requireHotel: PropTypes.string,
+    tripCheckInDate: PropTypes.string,
+    tripCheckOutDate:PropTypes.string,
+    cruiseDestion: PropTypes.string,
     firebaseKey: PropTypes.string,
+    phone_number: PropTypes.string    
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
 };
 
-TripForm.defaultProps = {
+CruiseForm.defaultProps = {
   obj: initialState,
 };
 
-export default TripForm;
+export default CruiseForm;
