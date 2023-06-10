@@ -25,7 +25,7 @@ function CruiseCard({ cruiseObj, onUpdate }) {
         <p className="card-text bold"> Returning Date: {cruiseObj.tripCheckOutDate}</p>
         <p className="card-text bold">Number of cabins needed: {cruiseObj.numberOfCabins}</p>
         <p className="card-text bold">Number of of cruisers: {cruiseObj.numberOfCruisers}</p>
-        <p className="card-text bold">Cabin specification: {cruiseObj.cruiseProtection}</p>
+        <p className="card-text bold">Cabin protection: {cruiseObj.cruiseProtection}</p>
         <p className="card-text bold">Will you require a hotel: {cruiseObj.requireHotel}</p>
         <p className="card-text bold">Would you like to add any protection for your package: {cruiseObj.cruiseProtection}</p>
         {/* <p className="card-text bold">Traveler's name: {cruiseObj.first_name} {cruiseObj.last_name}</p> */}

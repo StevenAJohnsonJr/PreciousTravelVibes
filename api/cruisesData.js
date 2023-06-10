@@ -28,7 +28,7 @@ const getSingleCruise = (firebaseKey) => new Promise((resolve, reject) => {
 });
 
 const createCruise = (payload) => new Promise((resolve, reject) => {
-    fetch(`${endpoint}/cruise.json?orderBy="uid"&equalTo="${uid}"`, {
+    fetch(`${endpoint}/cruise.json`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

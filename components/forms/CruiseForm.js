@@ -6,7 +6,7 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
-import { getCruise, updateCruise } from '../../api/cruisesData';
+import { createCruise, getCruise, updateCruise } from '../../api/cruisesData';
 
 const initialState = {
   first_name: '',
@@ -87,15 +87,15 @@ function CruiseForm({ obj }) {
       </FloatingLabel>
 
       <FloatingLabel controlId="floatingInput1" label="How many people will be cruising?" className="mb-3">
-        <Form.Control type="text" placeholder="How many people will be cruising?" name="numberOfCruisers" value={formInput.numberOfCruisers} onChange={handleChange} required />
+        <Form.Control type="number" placeholder="How many people will be cruising?" name="numberOfCruisers" value={formInput.numberOfCruisers} onChange={handleChange} required />
       </FloatingLabel>
 
-      <FloatingLabel controlId="floatingInput1" label="If more than one please specify how many in each cabin. (if zero put na)" className="mb-3">
-        <Form.Control type="number" placeholder="How many cabins will your party need?" name="cabinSpecification" value={formInput.cabinSpecification} onChange={handleChange} required />
+      <FloatingLabel controlId="floatingInput1" label="How many cabins do you need?" className="mb-3">
+        <Form.Control type="number" placeholder="How many cabins will your party need?" name="numberOfCabins" value={formInput.numberOfCabins} onChange={handleChange} required />
       </FloatingLabel>
 
-      <FloatingLabel controlId="floatingInput1" label="If more than one cabin please specify how many in each cabin." className="mb-3">
-        <Form.Control type="text" placeholder="If more than one cabin please specify how many in each cabin." name="numberOfCruisers" value={formInput.numberOfCruisers} onChange={handleChange} required />
+      <FloatingLabel controlId="floatingInput1" label="If more than one cabin please specify how many in each cabin (if zero put 0)." className="mb-3">
+        <Form.Control type="number" placeholder="If more than one cabin please specify how many in each cabin." name="cabinSpecification" value={formInput.cabinSpecification} onChange={handleChange} required />
       </FloatingLabel>
 
       <FloatingLabel controlId="floatingInput1" label="Please enter your departing date (mm/dd/yyyy)" className="mb-3">
@@ -110,18 +110,26 @@ function CruiseForm({ obj }) {
         <Form.Control type="text" placeholder="What is your cabin type: Interior, Oceanview, or Balcony" name="cabinType" value={formInput.cabinType} onChange={handleChange} required />
       </FloatingLabel>
 
-      <FloatingLabel controlId="floatingInput1" label="Would you ;ike to include cruise protection?" className="mb-3">
+      <FloatingLabel controlId="floatingInput1" label="Would you like to include cruise protection?" className="mb-3">
         <Form.Control type="text" placeholder="Would you ;ike to include cruise protection?" name="cruiseProtection" value={formInput.cruiseProtection} onChange={handleChange} required />
       </FloatingLabel>
 
-      {/* <FloatingLabel controlId="floatingInput1" label="Where is your paradise (desired destination)" className="mb-3">
-        <Form.Control type="text" placeholder="Where is your paradise (desired destination)" name="includeGratuities" value={formInput.includeGratuities} onChange={handleChange} required />
+      <FloatingLabel controlId="floatingInput1" label="Would you like to include gratuities?" className="mb-3">
+        <Form.Control type="text" placeholder="Would you like to include gratuities?" name="includeGratuities" value={formInput.includeGratuities} onChange={handleChange} required />
       </FloatingLabel>
 
-      <FloatingLabel controlId="floatingInput1" label="Is there anything that you would like us to know?" className="mb-3">
-        <Form.Control type="text" placeholder="Is there anything that you would like us to know?" name="tripComments" value={formInput.tripComments} onChange={handleChange} required />
-      </FloatingLabel> */}
+      <FloatingLabel controlId="floatingInput1" label="If you are arriving to your desried location before cruise departure date (highly recommened) would you like a hotel quote also?" className="mb-3">
+        <Form.Control type="text" placeholder="If you are arriving to your desried location before cruise departure date (highly recommened) would you like a hotel quote also?" name="requireHotel" value={formInput.requireHotel} onChange={handleChange} required />
+      </FloatingLabel>
+
+      <FloatingLabel controlId="floatingInput1" label="Where would you like to cruise to?" className="mb-3">
+        <Form.Control type="text" placeholder="Where would you like to cruise to?" name="cruiseDestion" value={formInput.cruiseDestion} onChange={handleChange} required />
+      </FloatingLabel>
     
+      <FloatingLabel controlId="floatingInput1" label="Do you have any comments for us?" className="mb-3">
+        <Form.Control type="text" placeholder="Do you have any comments for us?" name="cruiseComments" value={formInput.cruiseComments} onChange={handleChange} required />
+      </FloatingLabel>
+
       <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Trip</Button>
     </Form>
   </div>
