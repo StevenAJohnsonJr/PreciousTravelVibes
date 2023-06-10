@@ -14,16 +14,21 @@ const initialState = {
   tripComments: '',
   tripDepartingDate: '',
   tripDepartingLocation: '',
+  dateFlexable: '',
   tripReturningDate: '',
   TripDestion: '',
+  tripDepartingLocation: '',
+  emailMailingList: '',
+  email: '',
+  mehtodOfContact: '',
+
 };
 
 function TripForm({ obj }) {
-  const [formInput, setFormInput] = useState(initialState);
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [setTrip] = useState([]);
-  const router = useRouter();
-  const { user } = useAuth();
+ const [formInput, setFormInput] = useState(initialState);
+ const [setTrip] = useState([]);
+ const router = useRouter();
+ const { user } = useAuth();
 
   useEffect(() => {
     getTrip(user.uid).then(setTrip);
@@ -37,10 +42,6 @@ function TripForm({ obj }) {
       ...prevState,
       [name]: value,
     }));
-  };
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
   };
 
   const handleSubmit = (e) => {
@@ -81,152 +82,38 @@ function TripForm({ obj }) {
           <Form.Control type="text" placeholder="Please enter your email" name="email" value={formInput.email} onChange={handleChange} required />
         </FloatingLabel>
 
-        <input type="number" id="product-quantity" class="form-control single-product-qty input-sm" name="quantity" min="1" max="999" value="1" pattern="[0-9]*"></input>
-        <input type="hidden" name="variant_id" value="201"></input>
-
-        {/* BUSINESS_TITLE INPUT  */}
-        <Form.Check
-        className="text-white mb-3"
-        type="switch"
-        id="emailMailingList"
-        name="emailMailingList"
-        label="Would you like to be added to the email mailing list"
-        checked={formInput.emailMailingList}
-        onChange={(e) => {
-          setFormInput((prevState) => ({
-            ...prevState,
-            emailMailingList: e.target.checked,
-          }));
-        }}
-      />
-
-{['radio'].map((type) => (
-        <div key={`inline-${type}`} className="mb-3">
-          What is your preferred method of contact?     
-          <Form.Check
-            inline
-            label="Phone"
-            name="Phone"
-            type={type}
-            id={`inline-${type}-1`}
-          />
-          <Form.Check
-            inline
-            label="Email"
-            name="Email"
-            type={type}
-            id={`inline-${type}-2`}
-          />
-          <Form.Check
-            inline
-            label="Either"
-            name="Either"
-            type={type}
-            id={`inline-${type}-3`}
-          />
-        </div>
-      ))}
- <input
-          type="date"
-          label="tripDepartingDate"
-          name="tripDepartingDate"
-          placeholder="Departing Date"
-          value={selectedDate.toISOString().split('T')[0]}
-          onChange={(event) => handleDateChange(new Date(event.target.value))}
-        />
-
-<input 
-          type="date"
-          label="tripReturningDate"
-          name="tripReturningDate"
-          placeholder="Returning Date"
-          value={selectedDate.toISOString().split('T')[0]}
-          onChange={(event) => handleDateChange(new Date(event.target.value))}
-        />
-
-{['radio'].map((type) => (
-        <div key={`inline-${type}`} className="mb-3">
-          Are your dates flexible?     
-          <Form.Check
-            inline
-            label="Yes"
-            name="Yes"
-            type={type}
-            id={`inline-${type}-1`}
-          />
-          <Form.Check
-            inline
-            label="No"
-            name="No"
-            type={type}
-            id={`inline-${type}-2`}
-          />
-        </div>
-      ))}
-
-          <FloatingLabel controlId="floatingInput3" label="Please tell us your departing location" className="mb-3">
-          <Form.Control type="text" placeholder="tripDepartingLocation" name="tripDepartingLocation" value={formInput.tripDepartingLocation} onChange={handleChange} required />
+        <FloatingLabel controlId="floatingInput1" label="Would you like to be part of our email mailing list?" className="mb-3">
+          <Form.Control type="text" placeholder="Would you like to be part of the email mailing list?" name="emailMailingList" value={formInput.emailMailingList} onChange={handleChange} required />
         </FloatingLabel>
-        
-        {['radio'].map((type) => (
-        <div key={`inline-${type}`} className="mb-3">
-          Where would you like to explore?     
-          <Form.Check
-            inline
-            label="Jamicia"
-            name="Jamaicia"
-            type={type}
-            id={`inline-${type}-1`}
-          />
-          <Form.Check
-            inline
-            label="Mexico"
-            name="Mexico"
-            type={type}
-            id={`inline-${type}-2`}
-          />
-           <Form.Check
-            inline
-            label="Hawaii"
-            name="Hawaii"
-            type={type}
-            id={`inline-${type}-2`}
-          />
-           <Form.Check
-            inline
-            label="US City"
-            name="US City"
-            type={type}
-            id={`inline-${type}-2`}
-          />
-           <Form.Check
-            inline
-            label="Cruise"
-            name="Cruise"
-            type={type}
-            id={`inline-${type}-2`}
-          />
-           <Form.Check
-            inline
-            label="Dubai"
-            name="Dubai"
-            type={type}
-            id={`inline-${type}-2`}
-          />
-           <Form.Check
-            inline
-            label="Disney"
-            name="Disney"
-            type={type}
-            id={`inline-${type}-2`}
-          />
-        </div>
-      ))}
 
-        <FloatingLabel controlId="floatingInput3" label="Anything else that you would like us to know?" className="mb-3">
-          <Form.Control type="text" placeholder="tripComments" name="tripComments" value={formInput.tripComments} onChange={handleChange} required />
-        </FloatingLabel> 
-         
+        <FloatingLabel controlId="floatingInput1" label="What is your preferred method of contact?" className="mb-3">
+          <Form.Control type="text" placeholder="What is your preferred method of contact?" name="mehtodOfContact" value={formInput.mehtodOfContact} onChange={handleChange} required />
+        </FloatingLabel>
+
+        <FloatingLabel controlId="floatingInput1" label="Please enter your departing date (mm/dd/yyyy)" className="mb-3">
+          <Form.Control type="text" placeholder="Please enter your departing date" name="tripDepartingDate" value={formInput.tripDepartingDate} onChange={handleChange} required />
+        </FloatingLabel>
+
+        <FloatingLabel controlId="floatingInput1" label="Please enter your returning date (mm/dd/yyyy)" className="mb-3">
+          <Form.Control type="text" placeholder="Please enter your returning date" name="tripReturningDate" value={formInput.tripReturningDate} onChange={handleChange} required />
+        </FloatingLabel>
+
+        <FloatingLabel controlId="floatingInput1" label="Please tell us if your dates are flexible" className="mb-3">
+          <Form.Control type="text" placeholder="Please tell us if your daters are flexible" name="email" value={formInput.dateFlexable} onChange={handleChange} required />
+        </FloatingLabel>
+
+        <FloatingLabel controlId="floatingInput1" label="Please tell us where you are departing from (city and state please)" className="mb-3">
+          <Form.Control type="text" placeholder="Please tell us where you are departing from (city and state please)" name="tripDepartingLocation" value={formInput.tripDepartingLocation} onChange={handleChange} required />
+        </FloatingLabel>
+
+        <FloatingLabel controlId="floatingInput1" label="Where is your paradise (desired destination)" className="mb-3">
+          <Form.Control type="text" placeholder="Where is your paradise (desired destination)" name="TripDestion" value={formInput.TripDestion} onChange={handleChange} required />
+        </FloatingLabel>
+
+        <FloatingLabel controlId="floatingInput1" label="Is there anything that you would like us to know?" className="mb-3">
+          <Form.Control type="text" placeholder="Is there anything that you would like us to know?" name="tripComments" value={formInput.tripComments} onChange={handleChange} required />
+        </FloatingLabel>
+      
         <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Trip</Button>
       </Form>
     </div>
@@ -236,7 +123,8 @@ function TripForm({ obj }) {
 TripForm.propTypes = {
   companyObj: PropTypes.shape({
     tripDepartingDate: PropTypes.string,
-    tripDepartingLocation:PropTypes.string,
+    tripDepartingLocation: PropTypes.string,
+    dateFlexable: PropTypes.string,
     mehtodOfContact: PropTypes.string,
     email: PropTypes.string,
     phone_number: PropTypes.string,
@@ -246,6 +134,7 @@ TripForm.propTypes = {
     TripDestion: PropTypes.string,
     tripReturningDate: PropTypes.string,
     first_name: PropTypes.string,
+    numberOfTraverlers: PropTypes.string,
     firebaseKey: PropTypes.string,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,

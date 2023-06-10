@@ -28,6 +28,10 @@ export default function NavBarAuth() {
             <Link className="ps-relative" passHref href="/cruises/new">
               <Nav.Link className="nav-topic">Cruise Form</Nav.Link>
             </Link>
+            .{' '}
+            <Link className="ps-relative" passHref href="/cruise">
+              <Nav.Link className="nav-topic">Cruise</Nav.Link>
+            </Link>
             <Link className="ps-relative" passHref href="/user">
               <Nav.Link className="nav-topic">User</Nav.Link>
             </Link>
