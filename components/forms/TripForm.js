@@ -14,9 +14,9 @@ const initialState = {
   tripComments: '',
   tripDepartingDate: '',
   tripDepartingLocation: '',
-  dateFlexable: '',
+  flexibleDates: '',
   tripReturningDate: '',
-  TripDestion: '',
+  tripDestion: '',
   tripDepartingLocation: '',
   emailMailingList: '',
   email: '',
@@ -99,7 +99,7 @@ function TripForm({ obj }) {
         </FloatingLabel>
 
         <FloatingLabel controlId="floatingInput1" label="Please tell us if your dates are flexible" className="mb-3">
-          <Form.Control type="text" placeholder="Please tell us if your daters are flexible" name="dateFlexable" value={formInput.dateFlexable} onChange={handleChange} required />
+          <Form.Control type="text" placeholder="Please tell us if your daters are flexible" name="flexibleDates" value={formInput.flexibleDates} onChange={handleChange} required />
         </FloatingLabel>
 
         <FloatingLabel controlId="floatingInput1" label="Please tell us where you are departing from (city and state please)" className="mb-3">
@@ -107,7 +107,7 @@ function TripForm({ obj }) {
         </FloatingLabel>
 
         <FloatingLabel controlId="floatingInput1" label="Where is your paradise (desired destination)" className="mb-3">
-          <Form.Control type="text" placeholder="Where is your paradise (desired destination)" name="TripDestion" value={formInput.TripDestion} onChange={handleChange} required />
+          <Form.Control type="text" placeholder="Where is your paradise (desired destination)" name="tripDestion" value={formInput.tripDestion} onChange={handleChange} required />
         </FloatingLabel>
 
         <FloatingLabel controlId="floatingInput1" label="Is there anything that you would like us to know?" className="mb-3">
@@ -121,17 +121,17 @@ function TripForm({ obj }) {
 }
 
 TripForm.propTypes = {
-  companyObj: PropTypes.shape({
+  tripObj: PropTypes.shape({
     tripDepartingDate: PropTypes.string,
     tripDepartingLocation: PropTypes.string,
-    dateFlexable: PropTypes.string,
+    flexibleDates: PropTypes.string,
     mehtodOfContact: PropTypes.string,
     email: PropTypes.string,
     phone_number: PropTypes.string,
     emailMailingList:PropTypes.string,
     uid: PropTypes.string,
     tripComments: PropTypes.string,
-    TripDestion: PropTypes.string,
+    tripDestion: PropTypes.string,
     tripReturningDate: PropTypes.string,
     first_name: PropTypes.string,
     numberOfTraverlers: PropTypes.string,
