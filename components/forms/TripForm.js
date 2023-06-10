@@ -99,7 +99,7 @@ function TripForm({ obj }) {
         </FloatingLabel>
 
         <FloatingLabel controlId="floatingInput1" label="Please tell us if your dates are flexible" className="mb-3">
-          <Form.Control type="text" placeholder="Please tell us if your daters are flexible" name="email" value={formInput.dateFlexable} onChange={handleChange} required />
+          <Form.Control type="text" placeholder="Please tell us if your daters are flexible" name="dateFlexable" value={formInput.dateFlexable} onChange={handleChange} required />
         </FloatingLabel>
 
         <FloatingLabel controlId="floatingInput1" label="Please tell us where you are departing from (city and state please)" className="mb-3">
