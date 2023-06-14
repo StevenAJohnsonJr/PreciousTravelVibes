@@ -44,12 +44,12 @@ export default function Viewtrip() {
       <h5 style={{ marginTop: '80px' }}>{trips.length} Trips</h5>
       <div className="TripCardShow d-flex flex-wrap" style={{ marginTop: '20px' }}>
         {trips.map((trips) => (
-          <TripsCard key={trips.firebaseKey} tripObj={trips} onUpdate={getTripsCruise} />
+          <TripsCard key={trips.firebaseKey} tripObj={trips} onUpdate={getTripsCruise}/>
         ))}
       </div>
       <div className="mt-5">
         <h5>Would you like to add a Cruise</h5>
-        <CruiseCard obj={{}} profile_id={firebaseKey} onSubmit={handleAnswerSubmit} />
+        <CruiseCard obj={{}} profile_id={firebaseKey} onSubmit={handleAnswerSubmit}/>
       </div>
     </div>
   );
