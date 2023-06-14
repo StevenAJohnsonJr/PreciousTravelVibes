@@ -67,7 +67,7 @@ const deleteSingleCruise = (firebaseKey) => new Promise((resolve, reject) => {
 });
 
 const getCruiseProfile = (firebaseKey) => new Promise((resolve, reject) => {
-    fetch(`${endpoint}/trips.json?orderBy="profile_id"&equalTo="${firebaseKey}"`, {
+    fetch(`${endpoint}/cruise.json?orderBy="profile_id"&equalTo="${firebaseKey}"`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

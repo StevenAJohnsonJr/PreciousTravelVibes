@@ -28,6 +28,8 @@ function TripsCard({ tripObj, onUpdate }) {
         <p className="card-text bold">Am I added to the email mailing list: {tripObj.emailMailingList}</p>
         <p className="card-text bold">Anything else you want us to know: {tripObj.tripComments}</p>
         <p className="card-text bold">Travelers name: {tripObj.first_name} {tripObj.last_name}</p>
+        <p className="card-text bold">Travelers phone: {tripObj.phone_number}</p>
+        <p className="card-text bold">Travelers email:  {tripObj.email}</p>
         {/* DYNAMIC LINK TO VIEW THE BOOK DETAILS   */}
         <Link href={`/trips/${tripObj.firebaseKey}`} passHref>
           <Button variant="primary" className="m-2">
@@ -50,6 +52,8 @@ TripsCard.propTypes = {
     first_name: PropTypes.string,
     last_name: PropTypes.string,
     flexibleDates: PropTypes.string,
+    email: PropTypes.string,
+    phone_number: PropTypes.string,
     emailMailingList: PropTypes.string,
     mehtodOfContact: PropTypes.string,
     tripComments: PropTypes.string,

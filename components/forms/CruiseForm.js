@@ -51,7 +51,7 @@ function CruiseForm({ obj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.firebaseKey) {
-      updateCompany(formInput).then(() => router.push(`/cruise/${obj.firebaseKey}`));
+      updateCruise(formInput).then(() => router.push(`/cruises/${obj.firebaseKey}`));
     } else {
       const payload = { ...formInput, uid: user.uid };
       createCruise(payload).then(({ name }) => {

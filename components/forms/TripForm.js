@@ -102,6 +102,10 @@ function TripForm({ obj }) {
           <Form.Control type="text" placeholder="Please tell us if your daters are flexible" name="flexibleDates" value={formInput.flexibleDates} onChange={handleChange} required />
         </FloatingLabel>
 
+        <FloatingLabel controlId="floatingInput1" label="Please tell us how many persons in your travel party?" className="mb-3">
+          <Form.Control type="text" placeholder="Please tell us how many persons in your travel party?" name="numberOfTraverlers" value={formInput.numberOfTraverlers} onChange={handleChange} required />
+        </FloatingLabel>
+
         <FloatingLabel controlId="floatingInput1" label="Please tell us where you are departing from (city and state please)" className="mb-3">
           <Form.Control type="text" placeholder="Please tell us where you are departing from (city and state please)" name="tripDepartingLocation" value={formInput.tripDepartingLocation} onChange={handleChange} required />
         </FloatingLabel>

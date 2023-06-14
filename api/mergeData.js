@@ -1,32 +1,33 @@
-// import { deleteExpense, getSingleExpense } from './expense';
-// import { deleteSingleProfile, getProfileExpense, getSingleProfile } from './profile';
+import { deleteSingleCruise, getSingleCruise } from "./cruisesData";
+import { deleteSingleTrip, getSingleTrip } from "./tripsData";
 
-// const viewTripDetails = (tripFirebaseKey) => new Promise((resolve, reject) => {
-//   getSingleExpense(tripFirebaseKey)
-//     .then((tripObject) => {
-//       getSingle(expenseObject.profile_id)
-//         .then((profileObject) => {
-//           resolve({ profileObject, ...expenseObject });
-//         });
-//     }).catch((error) => reject(error));
-// });
 
-// const viewProfileDetails = (profileFirebaseKey) => new Promise((resolve, reject) => {
-//   Promise.all([getSingleProfile(profileFirebaseKey), getProfileExpense(profileFirebaseKey)])
-//     .then(([profileObject, profileExpenseArray]) => {
-//       resolve({ ...profileObject, expense: profileExpenseArray });
-//     }).catch((error) => reject(error));
-// });
+const viewTripDetails = (tripFirebaseKey) => new Promise((resolve, reject) => {
+    getSingleTrip(tripFirebaseKey)
+        .then((tripObject) => {
+            getSingleCruise(tripObject.profile_id)
+                .then((cruiseObject) => {
+                    resolve({ cruiseObject, ...tripObject });
+                });
+        }).catch((error) => reject(error));
+});
 
-// const deleteProfileExpense = (profileId) => new Promise((resolve, reject) => {
-//   getProfileExpense(profileId).then((expenseArray) => {
-//     console.warn(expenseArray, 'Teamss Members');
-//     const deleteExpensePromises = expenseArray.map((expenses) => deleteExpense(expenses.firebaseKey));
+const viewCruiseDetails = (cruiseFirebaseKey) => new Promise((resolve, reject) => {
+    Promise.all([getSingleCruise(cruiseFirebaseKey), getCruiseProfile(cruiseFirebaseKey)])
+        .then(([cruiseObject, cruiseTripsArray]) => {
+            resolve({ ...cruiseObject, trips: cruiseTripsArray });
+        }).catch((error) => reject(error));
+});
 
-//     Promise.all(deleteExpensePromises).then(() => {
-//       deleteSingleProfile(profileId).then(resolve);
-//     });
-//   }).catch((error) => reject(error));
-// });
+const deleteCruiseTrips = (profile_id) => new Promise((resolve, reject) => {
+    getCruiseProfile(profile_id).then((tripsArray) => {
+        console.warn(tripsArray, 'cruise trips');
+        const deleteTripPromises = tripsArray.map((trips) => deleteSingleTrip(trips.firebaseKey));
 
-// export { viewExpenseDetails, viewProfileDetails, deleteProfileExpense };
+        Promise.all(deleteTripPromises).then(() => {
+            deleteSingleCruise(profile_id).then(resolve);
+        });
+    }).catch((error) => reject(error));
+});
+
+export { viewCruiseDetails, viewTripDetails, deleteCruiseTrips };
