@@ -23,7 +23,7 @@ export default function Viewtrip() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleAnswerSubmit = (trips) => {
+  const handleTripSubmit = (trips) => {
     createTrip(firebaseKey, trips)
       .then((data) => {
         setTrips([...trips, data]);
@@ -41,16 +41,16 @@ export default function Viewtrip() {
         <p style={{ marginButton: '100px' }}>The number of travelers in your party is: {singleTripDetails.numberOfTraverlers}</p>
         <p style={{ marginButton: '100px' }}>Your preffered method of contact is: {singleTripDetails.mehtodOfContact}</p>
       </div>
-      <h5 style={{ marginTop: '80px' }}>{trips.length} Trips</h5>
+      {/* <h5 style={{ marginTop: '80px' }}>{trips.length} Trips</h5>
       <div className="TripCardShow d-flex flex-wrap" style={{ marginTop: '20px' }}>
         {trips.map((trips) => (
-          <TripsCard key={trips.firebaseKey} tripObj={trips} onUpdate={getTripsCruise}/>
+          <TripsCard key={trips.firebaseKey} tripObj={trips} onUpdate={viewTripDetails} />
         ))}
-      </div>
-      <div className="mt-5">
+      </div> */}
+      {/* <div className="mt-5">
         <h5>Would you like to add a Cruise</h5>
-        <CruiseCard obj={{}} profile_id={firebaseKey} onSubmit={handleAnswerSubmit}/>
-      </div>
+        <CruiseCard obj={{}} profile_id={firebaseKey} onSubmit={handleTripSubmit} />
+      </div> */}
     </div>
   );
 }
