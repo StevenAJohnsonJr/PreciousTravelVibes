@@ -1,5 +1,5 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+/* eslint-disable */
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Link from 'next/link';
@@ -10,6 +10,30 @@ import { deleteSingleTrip } from '../api/tripsData';
 function TripsCard({ tripObj, onUpdate }) {
   // FOR DELETE, WE NEED TO REMOVE THE BOOK AND HAVE THE VIEW RERENDER,
   //  SO WE PASS THE FUNCTION FROM THE PARENT THAT GETS THE BOOKS
+
+  const [clickCount, setClickCount] = useState(0);
+  const [status, setStatus] = useState('not started');
+
+  const handleClick = () => {
+    let newClickCount = clickCount + 1;
+    setClickCount(newClickCount);
+
+    if (newClickCount === 1) {
+      setStatus('not started');
+    } else if (newClickCount === 2) {
+      setStatus('in progress');
+    } else if (newClickCount === 3) {
+      setStatus('completed');
+    }
+  };
+
+  let buttonColor = '';
+  if (clickCount === 2) {
+    buttonColor = 'yellow';
+  } else if (clickCount === 3) {
+    buttonColor = 'green';
+  }
+
   const deleteThisTrip = () => {
     if (window.confirm(`Delete ${tripObj.first_name}?`)) {
       deleteSingleTrip(tripObj.firebaseKey).then(() => onUpdate());
@@ -17,8 +41,9 @@ function TripsCard({ tripObj, onUpdate }) {
   };
 
   return (
+    <div>
     <Card style={{ width: '18rem', margin: '10px' }}>
-      {/* <Card.Img variant="top" src={tripObj.first_name} alt={tripObj.last_name} style={{ height: '400px' }} /> */}
+      <Card.Img variant="top" src="/r31.jpg" alt="plane" style={{ height: '218px' }} />
       <Card.Body>
         <Card.Title>{tripObj.tripDestion}</Card.Title>
         <p className="card-text bold"> Departing Date: {tripObj.tripDepartingDate}</p>
@@ -37,13 +62,17 @@ function TripsCard({ tripObj, onUpdate }) {
           </Button>
         </Link>
         <Link href={`/trips/edit/${tripObj.firebaseKey}`} passHref>
-          <Button variant="info">EDIT</Button>
+          <Button src="CCxiK5APZlnu.gif" variant="info">EDIT</Button>
         </Link>
         <Button variant="danger" onClick={deleteThisTrip} className="m-2">
           DELETE
         </Button>
       </Card.Body>
+      <button style={{ backgroundColor: buttonColor }} onClick={handleClick}>
+        {status}
+      </button>
     </Card>
+    </div>
   );
 }
 

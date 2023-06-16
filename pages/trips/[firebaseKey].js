@@ -23,15 +23,15 @@ export default function Viewtrip() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleTripSubmit = (trips) => {
-    createTrip(firebaseKey, trips)
-      .then((data) => {
-        setTrips([...trips, data]);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-  };
+  // const handleTripSubmit = (trips) => {
+  //   createTrip(firebaseKey, trips)
+  //     .then((data) => {
+  //       setTrips([...trips, data]);
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error:', error);
+  //     });
+  // };
 
   return (
     <div className="mt-5">
@@ -40,17 +40,15 @@ export default function Viewtrip() {
         <p style={{ marginButton: '100px' }}>You will be leaving from {singleTripDetails.tripDepartingLocation} on: {singleTripDetails.tripDepartingDate} and returning on: {singleTripDetails.tripReturningDate}</p>
         <p style={{ marginButton: '100px' }}>The number of travelers in your party is: {singleTripDetails.numberOfTraverlers}</p>
         <p style={{ marginButton: '100px' }}>Your preffered method of contact is: {singleTripDetails.mehtodOfContact}</p>
+        <h5>
+        <h5 style={{ marginTop: '80px' }}>Trips: {trips.length} </h5>
+        </h5>
       </div>
-      {/* <h5 style={{ marginTop: '80px' }}>{trips.length} Trips</h5>
-      <div className="TripCardShow d-flex flex-wrap" style={{ marginTop: '20px' }}>
-        {trips.map((trips) => (
-          <TripsCard key={trips.firebaseKey} tripObj={trips} onUpdate={viewTripDetails} />
+      <div className="d-flex flex-wrap">
+        {singleTripDetails.cruise?.map((cruises) => (
+          <CruiseCard key={cruises.firebaseKey} obj={cruisesruises} onUpdate={viewTripDetails} />
         ))}
-      </div> */}
-      {/* <div className="mt-5">
-        <h5>Would you like to add a Cruise</h5>
-        <CruiseCard obj={{}} profile_id={firebaseKey} onSubmit={handleTripSubmit} />
-      </div> */}
+      </div>
     </div>
   );
 }
