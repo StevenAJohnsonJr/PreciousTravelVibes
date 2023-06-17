@@ -2,18 +2,18 @@ import { clientCredentials } from '../utils/client';
 
 const endpoint = clientCredentials.databaseURL;
 
-// FIXME:  GET ALL AUTHORS
-const getTrip = () => new Promise((resolve, reject) => {
-    fetch(`${endpoint}/trips.json`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
+// FIXME:  GET ALL TRIPS
+const getTrip = (uid) => new Promise((resolve, reject) => {
+    fetch(`${endpoint}/trips.json?orderBy="uid"&equalTo="${uid}"`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
-        .then((response) => response.json())
-        .then((data) => resolve(Object.values(data)))
-        .catch(reject);
-});
+      .then((response) => response.json())
+      .then((data) => resolve(Object.values(data)))
+      .catch(reject);
+  });
 
 const getSingleTrip = (firebaseKey) => new Promise((resolve, reject) => {
     fetch(`${endpoint}/trips/${firebaseKey}.json`, {

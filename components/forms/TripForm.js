@@ -13,15 +13,22 @@ const initialState = {
   last_name: '',
   tripComments: '',
   tripDepartingDate: '',
+  tripDepartingLocation: '',
+  flexibleDates: '',
   tripReturningDate: '',
-  TripDestion: '',
+  tripDestion: '',
+  tripDepartingLocation: '',
+  emailMailingList: '',
+  email: '',
+  mehtodOfContact: '',
+
 };
 
 function TripForm({ obj }) {
-  const [formInput, setFormInput] = useState(initialState);
-  const [setTrip] = useState([]);
-  const router = useRouter();
-  const { user } = useAuth();
+ const [formInput, setFormInput] = useState(initialState);
+ const [setTrip] = useState([]);
+ const router = useRouter();
+ const { user } = useAuth();
 
   useEffect(() => {
     getTrip(user.uid).then(setTrip);
@@ -59,79 +66,58 @@ function TripForm({ obj }) {
         <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Your Paradise </h2>
 
         <FloatingLabel controlId="floatingInput2" label="Please enter your first name" className="mb-3">
-          <Form.Control type="url" placeholder="Please enter your first name" name="first_name" value={formInput.first_name} onChange={handleChange} required />
+          <Form.Control type="text" placeholder="Please enter your first name" name="first_name" value={formInput.first_name} onChange={handleChange} required />
         </FloatingLabel>
 
         {/* TITLE INPUT  */}
-        {/* <FloatingLabel controlId="floatingInput1" label="Please enter your last name" className="mb-3">
+        <FloatingLabel controlId="floatingInput1" label="Please enter your last name" className="mb-3">
           <Form.Control type="text" placeholder="Please enter your last name" name="last_name" value={formInput.last_name} onChange={handleChange} required />
-        </FloatingLabel> */}
+        </FloatingLabel> 
 
         <FloatingLabel controlId="floatingInput1" label="Please enter your 10 digit phone number" className="mb-3">
-          <Form.Control type="text" placeholder="Please enter your 10 digit phone number" name="last_name" value={formInput.phone_number} onChange={handleChange} required />
+          <Form.Control type="Number" placeholder="Please enter your 10 digit phone number" name="phone_number" value={formInput.phone_number} onChange={handleChange} required />
         </FloatingLabel>
 
         <FloatingLabel controlId="floatingInput1" label="Please enter your email" className="mb-3">
-          <Form.Control type="text" placeholder="Please enter your email" name="last_name" value={formInput.email} onChange={handleChange} required />
+          <Form.Control type="text" placeholder="Please enter your email" name="email" value={formInput.email} onChange={handleChange} required />
         </FloatingLabel>
 
-        {/* BUSINESS_TITLE INPUT  */}
-        <Form.Check
-        className="text-white mb-3"
-        type="switch"
-        id="emailMailingList"
-        name="emailMailingList"
-        label="Would you like to be added to the email mailing list"
-        checked={formInput.emailMailingList}
-        onChange={(e) => {
-          setFormInput((prevState) => ({
-            ...prevState,
-            emailMailingList: e.target.checked,
-          }));
-        }}
-      />
-
-{['radio'].map((type) => (
-        <div key={`inline-${type}`} className="mb-3">
-          How would you like tro be contacted?     
-          <Form.Check
-            inline
-            label="Phone"
-            name="Phone"
-            type={type}
-            id={`inline-${type}-1`}
-          />
-          <Form.Check
-            inline
-            label="Email"
-            name="Email"
-            type={type}
-            id={`inline-${type}-2`}
-          />
-          <Form.Check
-            inline
-            label="Either"
-            name="Either"
-            type={type}
-            id={`inline-${type}-3`}
-          />
-        </div>
-      ))}
-
-        
-         {/* <FloatingLabel controlId="floatingInput3" label="Please enter breif description about your company" className="mb-3">
-          <Form.Control type="text" placeholder="company_descrpition" name="company_descrpition" value={formInput.company_descrpition} onChange={handleChange} required />
+        <FloatingLabel controlId="floatingInput1" label="Would you like to be part of our email mailing list?" className="mb-3">
+          <Form.Control type="text" placeholder="Would you like to be part of the email mailing list?" name="emailMailingList" value={formInput.emailMailingList} onChange={handleChange} required />
         </FloatingLabel>
 
-        <FloatingLabel controlId="floatingInput3" label="Please tell us where your company's headquaters is" className="mb-3">
-          <Form.Control type="text" placeholder="company_location" name="company_location" value={formInput.company_location} onChange={handleChange} required />
+        <FloatingLabel controlId="floatingInput1" label="What is your preferred method of contact?" className="mb-3">
+          <Form.Control type="text" placeholder="What is your preferred method of contact?" name="mehtodOfContact" value={formInput.mehtodOfContact} onChange={handleChange} required />
         </FloatingLabel>
 
-        <FloatingLabel controlId="floatingInput3" label="Give us a #" className="mb-3">
-          <Form.Control type="text" placeholder="company_tag" name="company_tag" value={formInput.company_tag} onChange={handleChange} required />
-        </FloatingLabel> */}
+        <FloatingLabel controlId="floatingInput1" label="Please enter your departing date (mm/dd/yyyy)" className="mb-3">
+          <Form.Control type="text" placeholder="Please enter your departing date" name="tripDepartingDate" value={formInput.tripDepartingDate} onChange={handleChange} required />
+        </FloatingLabel>
 
-        {/* SUBMIT BUTTON  */}
+        <FloatingLabel controlId="floatingInput1" label="Please enter your returning date (mm/dd/yyyy)" className="mb-3">
+          <Form.Control type="text" placeholder="Please enter your returning date" name="tripReturningDate" value={formInput.tripReturningDate} onChange={handleChange} required />
+        </FloatingLabel>
+
+        <FloatingLabel controlId="floatingInput1" label="Please tell us if your dates are flexible" className="mb-3">
+          <Form.Control type="text" placeholder="Please tell us if your daters are flexible" name="flexibleDates" value={formInput.flexibleDates} onChange={handleChange} required />
+        </FloatingLabel>
+
+        <FloatingLabel controlId="floatingInput1" label="Please tell us how many persons in your travel party?" className="mb-3">
+          <Form.Control type="text" placeholder="Please tell us how many persons in your travel party?" name="numberOfTraverlers" value={formInput.numberOfTraverlers} onChange={handleChange} required />
+        </FloatingLabel>
+
+        <FloatingLabel controlId="floatingInput1" label="Please tell us where you are departing from (city and state please)" className="mb-3">
+          <Form.Control type="text" placeholder="Please tell us where you are departing from (city and state please)" name="tripDepartingLocation" value={formInput.tripDepartingLocation} onChange={handleChange} required />
+        </FloatingLabel>
+
+        <FloatingLabel controlId="floatingInput1" label="Where is your paradise (desired destination)" className="mb-3">
+          <Form.Control type="text" placeholder="Where is your paradise (desired destination)" name="tripDestion" value={formInput.tripDestion} onChange={handleChange} required />
+        </FloatingLabel>
+
+        <FloatingLabel controlId="floatingInput1" label="Is there anything that you would like us to know?" className="mb-3">
+          <Form.Control type="text" placeholder="Is there anything that you would like us to know?" name="tripComments" value={formInput.tripComments} onChange={handleChange} required />
+        </FloatingLabel>
+      
         <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Trip</Button>
       </Form>
     </div>
@@ -139,16 +125,20 @@ function TripForm({ obj }) {
 }
 
 TripForm.propTypes = {
-  companyObj: PropTypes.shape({
+  tripObj: PropTypes.shape({
     tripDepartingDate: PropTypes.string,
+    tripDepartingLocation: PropTypes.string,
+    flexibleDates: PropTypes.string,
+    mehtodOfContact: PropTypes.string,
     email: PropTypes.string,
     phone_number: PropTypes.string,
     emailMailingList:PropTypes.string,
     uid: PropTypes.string,
     tripComments: PropTypes.string,
-    TripDestion: PropTypes.string,
+    tripDestion: PropTypes.string,
     tripReturningDate: PropTypes.string,
     first_name: PropTypes.string,
+    numberOfTraverlers: PropTypes.string,
     firebaseKey: PropTypes.string,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,

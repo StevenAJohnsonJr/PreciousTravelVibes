@@ -3,8 +3,8 @@ import { clientCredentials } from '../utils/client';
 const endpoint = clientCredentials.databaseURL;
 
 // FIXME:  GET ALL AUTHORS
-const getCruise = () => new Promise((resolve, reject) => {
-    fetch(`${endpoint}/cruises.json`, {
+const getCruise = (uid) => new Promise((resolve, reject) => {
+    fetch(`${endpoint}/cruise.json?orderBy="uid"&equalTo="${uid}"`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -16,7 +16,7 @@ const getCruise = () => new Promise((resolve, reject) => {
 });
 
 const getSingleCruise = (firebaseKey) => new Promise((resolve, reject) => {
-    fetch(`${endpoint}/cruises/${firebaseKey}.json`, {
+    fetch(`${endpoint}/cruise/${firebaseKey}.json`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ const getSingleCruise = (firebaseKey) => new Promise((resolve, reject) => {
 });
 
 const createCruise = (payload) => new Promise((resolve, reject) => {
-    fetch(`${endpoint}/cruises.json`, {
+    fetch(`${endpoint}/cruise.json`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ const createCruise = (payload) => new Promise((resolve, reject) => {
 });
 
 const updateCruise = (payload) => new Promise((resolve, reject) => {
-    fetch(`${endpoint}/cruises/${payload.firebaseKey}.json`, {
+    fetch(`${endpoint}/cruise/${payload.firebaseKey}.json`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ const updateCruise = (payload) => new Promise((resolve, reject) => {
 
 // FIXME: DELETE AUTHOR
 const deleteSingleCruise = (firebaseKey) => new Promise((resolve, reject) => {
-    fetch(`${endpoint}/cruises/${firebaseKey}.json`, {
+    fetch(`${endpoint}/cruise/${firebaseKey}.json`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ const deleteSingleCruise = (firebaseKey) => new Promise((resolve, reject) => {
 });
 
 const getCruiseProfile = (firebaseKey) => new Promise((resolve, reject) => {
-    fetch(`${endpoint}/trips.json?orderBy="profile_id"&equalTo="${firebaseKey}"`, {
+    fetch(`${endpoint}/cruise.json?orderBy="profile_id"&equalTo="${firebaseKey}"`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ const getCruiseProfile = (firebaseKey) => new Promise((resolve, reject) => {
 });
 
 const getUserCruises = (uid) => new Promise((resolve, reject) => {
-    fetch(`${endpoint}/cruises.json?orderBy="uid"&equalTo="${uid}"`, {
+    fetch(`${endpoint}/cruise.json?orderBy="uid"&equalTo="${uid}"`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

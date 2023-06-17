@@ -1,66 +1,58 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable */
 import Link from 'next/link';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import { Button } from 'react-bootstrap';
-import { getTrip } from '../api/tripsData';
-import TripsCard from '../components/TripCard';
+import Image from 'next/image';
+import { Button, Card, Container } from 'react-bootstrap';
 
 function Home() {
-  const [trips, setTrips] = useState([]);
-  const [count, setCount] = useState(0);
-
-  const getAllTrips = () => {
-    getTrip()
-      .then((data) => {
-        if (Array.isArray(data)) {
-          setTrips(data);
-          setCount(data.length); // here is updating the count
-        } else {
-          console.error('Invalid response from API: expected an array');
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
-  useEffect(() => {
-    getAllTrips();
-  }, []);
-
   return (
-    <div style={{ marginTop: '50px' }}>
-      <Row>
-        <Col sm={8}>
-          <div className="containerQuestion">
-            <div
-              style={{
-                marginTop: '50px',
-                marginBottom: '10px',
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-              }}
-            >
-              <h3>All Trips</h3>
-              <div>
-                <Link href="/trips/new" passHref>
-                  <Button variant="info">My Trips</Button>
-                </Link>
-              </div>
-            </div>
-            <h5 style={{ marginTop: '30px' }}>{count} Trips</h5>
-            <div className="d-flex flex-wrap" style={{ width: '100%', color: 'black', marginBottom: '50px' }}>
-              {/* check if questions is an array before mapping */}
-              {Array.isArray(trips) && trips.map((trip) => <TripsCard key={trips.firebaseKey} tripObj={trip} onUpdate={getAllTrips} />)}
-            </div>
-          </div>
-        </Col>
-        <Col sm={4} />
-      </Row>
+    <div>
+      <Card>
+        <Card.Img
+          className="toot"
+          variant="top"
+          src="/toot1.jpg"
+          alt="ceo"
+          style={{
+            position: 'absolute',
+            top: '0',
+            start: '100',
+            translate: 'middle',
+            rounded: 'pill',
+          }}
+        />
+      </Card>
+      <p className="toot2">@paradisetravelvibes</p>
+      <p className="toot2">@paradisetravelvibes</p>
+
+      <Container className="homepage">
+        <Link className="ps-relative1" style={{ marginButton: '20px' }} passHref href="/trips/new">
+          <Button className="button3">Trip Form</Button>
+        </Link>
+        <Link className="ps-relative2" passHref href="/cruises/new">
+          <Button className="button4">Cruise Form</Button>
+        </Link>
+        <Link className="ps-relative3" passHref href="/carosel">
+          <Button className="button">Summer Getaway Cruise Flyer</Button>
+        </Link>
+        <Link className="ps-relative3" passHref href="/aboutMe">
+          <Button className="button2">About Me</Button>
+        </Link>
+      </Container>
+      <Container
+        className="logo"
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          width: '20%',
+          heigh: '20%',
+        }
+      
+    }>
+        <div>
+          <Image src="/toot2.jpg" class="card-img-bottom" alt="ceo" />
+        </div>
+      </Container>
     </div>
   );
 }
-
 export default Home;
