@@ -1,6 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React from 'react';
+/* eslint-disable */
 import Link from 'next/link';
+import Image from 'next/image';
 import { Button, Card, Container } from 'react-bootstrap';
 
 function Home() {
@@ -12,11 +12,14 @@ function Home() {
           variant="top"
           src="/toot1.jpg"
           alt="ceo"
-          style={
-          {
-            position: 'absolute', top: '0', start: '100', translate: 'middle', rounded: 'pill',
-          }
-      } />
+          style={{
+            position: 'absolute',
+            top: '0',
+            start: '100',
+            translate: 'middle',
+            rounded: 'pill',
+          }}
+        />
       </Card>
       <p className="toot2">@paradisetravelvibes</p>
       <p className="toot2">@paradisetravelvibes</p>
@@ -34,6 +37,20 @@ function Home() {
         <Link className="ps-relative3" passHref href="/aboutMe">
           <Button className="button2">About Me</Button>
         </Link>
+      </Container>
+      <Container
+        className="logo"
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          width: '20%',
+          heigh: '20%',
+        }
+      
+    }>
+        <div>
+          <Image src="/toot2.jpg" class="card-img-bottom" alt="ceo" />
+        </div>
       </Container>
     </div>
   );

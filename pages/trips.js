@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../utils/context/authContext';
 import { getTrip } from '../api/tripsData';
-import TripsCard from '../components/TripCard';
+import TripsCard from '../components/cards/TripCard';
 
 function Trips() {
   // TODO: Set a state for books

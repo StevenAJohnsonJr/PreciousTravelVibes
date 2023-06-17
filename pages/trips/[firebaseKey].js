@@ -2,10 +2,10 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 // Import the modified createTrips function that uses fetch
-import { createTrip, getTripsCruise } from '../../api/tripsData';
+import { getTripsCruise } from '../../api/tripsData';
 import { viewTripDetails } from '../../api/mergeData';
-import TripsCard from '../../components/TripCard';
-import CruiseCard from '../../components/CruiseCard';
+// import TripsCard from '../../components/TripCard';
+import CruiseCard from '../components/cards/CruiseCard';
 
 export default function Viewtrip() {
   const [singleTripDetails, setTripDetails] = useState({});

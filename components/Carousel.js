@@ -22,7 +22,7 @@ function TopSlide() {
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
-        <img className="d-block w-100" src="/backslide2.png" alt="Second slide" />
+        <img className="d-block w-100" src="/toot2.jpg" alt="Second slide" />
         <Carousel.Caption>
           <Link passHref href="/appointment/new">
             <Button className="app-button" variant="light">

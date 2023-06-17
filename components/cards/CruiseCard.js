@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
 import Button from 'react-bootstrap/Button';
-import { deleteSingleCruise } from '../api/cruisesData';
+import { deleteSingleCruise } from '../../api/cruisesData';
 
 function CruiseCard({ cruiseObj, onUpdate }) {
   // FOR DELETE, WE NEED TO REMOVE THE BOOK AND HAVE THE VIEW RERENDER,

@@ -1,8 +1,8 @@
 /* eslint-disable */
 import React, { useState } from 'react';
 
-import TripsCard from '../components/TripCard';
-import CruiseCard from '../components/CruiseCard';
+import TripsCard from './cards/TripCard';
+import CruiseCard from './cards/CruiseCard';
 
 const Admin = () => {
   const [isAdmin, setIsAdmin] = useState(false);

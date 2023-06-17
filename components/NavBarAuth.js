@@ -28,6 +28,9 @@ export default function NavBarAuth() {
             <Link className="ps-relative" passHref href="/trips/new">
               <Nav.Link className="nav-topic">Trip Form</Nav.Link>
             </Link>
+            <Link className="ps-relative" passHref href="/adminTable">
+              <Nav.Link className="nav-topic">Admin Table</Nav.Link>
+            </Link>
             <Link className="ps-relative" passHref href="/trips">
               <Nav.Link className="nav-topic">Trips</Nav.Link>
             </Link>
