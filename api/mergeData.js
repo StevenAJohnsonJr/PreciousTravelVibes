@@ -1,4 +1,4 @@
-import { deleteSingleCruise, getSingleCruise } from "./cruisesData";
+import { deleteSingleCruise, getCruiseProfile, getSingleCruise, } from "./cruisesData";
 import { deleteSingleTrip, getSingleTrip } from "./tripsData";
 
 

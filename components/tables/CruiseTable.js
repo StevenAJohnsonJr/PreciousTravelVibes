@@ -38,7 +38,7 @@ function CruiseTable({ cruiseObj, onUpdate }) {
 
   return (
     <div className="triptable">
-      <Table striped>
+      <Table>
         <thead>
           <tr>
             <th>Cruises To Be Booked</th>
@@ -63,21 +63,25 @@ function CruiseTable({ cruiseObj, onUpdate }) {
             <td>{cruiseObj.tripCheckOutDate}</td>
             <td>{cruiseObj.numberOfCabins}</td>
             <td>
-              <Link href={`/cruise/${cruiseObj.firebaseKey}`} passHref>
+              <Link href={`/cruises/adminTable/${cruiseObj.firebaseKey}`} passHref>
                 <Button variant="primary" className="m-2">
                   VIEW
                 </Button>
               </Link>
             </td>
             <td>
+            <Link href="" passHref>
               <Button className="m-2" style={{ backgroundColor: buttonColor }} onClick={handleClick}>
                 {status}
               </Button>
+              </Link>
             </td>{' '}
             <td>
+              <Link href="" passHref>
               <Button variant="danger" onClick={deleteThisCruise} className="m-2">
                 DELETE
               </Button>
+              </Link>
             </td>
           </tr>
         </tbody>

@@ -15,6 +15,18 @@ const getTrip = (uid) => new Promise((resolve, reject) => {
       .catch(reject);
   });
 
+  const getTripAdmin = () => new Promise((resolve, reject) => {
+    fetch(`${endpoint}/trips.json`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => resolve(Object.values(data)))
+      .catch(reject);
+  });
+
 const getSingleTrip = (firebaseKey) => new Promise((resolve, reject) => {
     fetch(`${endpoint}/trips/${firebaseKey}.json`, {
         method: 'GET',
@@ -92,6 +104,7 @@ const getUserTrips = (uid) => new Promise((resolve, reject) => {
 
 export {
     getTrip,
+    getTripAdmin,
     getSingleTrip,
     createTrip,
     updateTrip,
