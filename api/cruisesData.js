@@ -15,6 +15,18 @@ const getCruise = (uid) => new Promise((resolve, reject) => {
         .catch(reject);
 });
 
+const getCruiseAdmin = () => new Promise((resolve, reject) => {
+    fetch(`${endpoint}/cruise.json`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then((response) => response.json())
+        .then((data) => resolve(Object.values(data)))
+        .catch(reject);
+});
+
 const getSingleCruise = (firebaseKey) => new Promise((resolve, reject) => {
     fetch(`${endpoint}/cruise/${firebaseKey}.json`, {
         method: 'GET',
@@ -92,6 +104,7 @@ const getUserCruises = (uid) => new Promise((resolve, reject) => {
 
 export {
     getCruise,
+    getCruiseAdmin,
     getSingleCruise,
     createCruise,
     updateCruise,

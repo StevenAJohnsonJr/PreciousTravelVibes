@@ -1,10 +1,11 @@
 /* eslint-disable */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Link from 'next/link';
 import Table from 'react-bootstrap/Table';
 import { deleteSingleTrip } from '../../api/tripsData';
+import { Container } from 'react-bootstrap';
 
 function TripsTable({ tripObj, onUpdate }) {
   const [clickCount, setClickCount] = useState(0);
@@ -36,19 +37,20 @@ function TripsTable({ tripObj, onUpdate }) {
   };
   return (
     <div className="triptable">
-      <Table striped>
+      <Container>
+      <Table responsive style={{ borderBox: '30px'}}>
         <thead>
           <tr>
-            <th>Trips To Be Booked</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Destination</th>
-            <th>Returning Date</th>
-            <th>Departure Date</th>
-            <th>Contact Method</th>
-            <th>Action</th>
-            <th>Current Progress</th>
-            <th>Delete Trip</th>
+            <th>Trips To Be Booked </th>
+            <th>First Name </th>
+            <th>Last Name </th>
+            <th>Destination </th>
+            <th>Returning Date </th>
+            <th>Departure Date </th>
+            <th>Contact Method </th>
+            <th>Action </th>
+            <th>Current Progress </th>
+            <th>Delete Trip </th>
           </tr>
         </thead>
         <tbody>
@@ -61,25 +63,34 @@ function TripsTable({ tripObj, onUpdate }) {
             <td>{tripObj.tripReturningDate}</td>
             <td>{tripObj.mehtodOfContact}</td>
             <td>
-              <Link href={`/trips/${tripObj.firebaseKey}`} passHref>
+            
+              <Link href={`/trips/adminTable/${tripObj.firebaseKey}`} passHref>
                 <Button variant="primary" className="m-2">
                   VIEW
                 </Button>
+              
               </Link>
-            </td>
+              </td>
             <td>
+              <Link href="" passHref>
               <Button className="m-2" style={{ backgroundColor: buttonColor }} onClick={handleClick}>
                 {status}
               </Button>
+              </Link>
             </td>{' '}
             <td>
-              <Button variant="danger" onClick={deleteThisTrip} className="m-2">
+            <Link href="" passHref>
+            <Button variant="danger" onClick={deleteThisTrip} className="m-2">
                 DELETE
               </Button>
+          </Link>
+              
             </td>
           </tr>
         </tbody>
       </Table>
+      
+      </Container>
     </div>
   );
 }
